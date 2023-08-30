@@ -2,7 +2,7 @@ import logging
 import os
 import random
 import string
-
+import g4f
 import dotenv
 import requests
 from aiogram import Bot, Dispatcher, executor, types
@@ -12,7 +12,6 @@ from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 
 from backend.g4f import ChatCompletion, Model
-from proxy import get_tor_session
 
 logging.basicConfig(level=logging.INFO)
 
@@ -190,11 +189,11 @@ class TG_BOT:
                 data["text"] = message.text
                 request = data["text"]
                 TG_BOT.messages.append({"role": "user", "content": request})
-                response = ChatCompletion.create(
-                    model=Model.gpt_35_turbo,
-                    messages=TG_BOT.messages,
+                response = g4f.ChatCompletion.create(
+                    model="gpt-4",
+                    provider=g4f.Provider.DeepAi,
+                    messages=[{"role": "user", "content": request}],
                     stream=True,
-                    session=get_tor_session(),
                 )
                 reply = ""
                 for item in response:
