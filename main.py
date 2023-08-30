@@ -2,15 +2,15 @@ import logging
 import os
 import random
 import string
-import g4f
+
 import dotenv
+import g4f
 import requests
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
-
 from backend.g4f import ChatCompletion, Model
 
 logging.basicConfig(level=logging.INFO)
