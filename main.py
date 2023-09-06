@@ -182,7 +182,7 @@ class TG_BOT:
     async def receive_streamed_request(message: types.Message, state: FSMContext):
         if (
             message.reply_to_message
-            and message.reply_to_message["from"]["username"] == "gpt_sigma_bot"
+            and message.reply_to_message["from"]["username"] == "gpt_sigma_v2_bot"
         ):
             async with state.proxy() as data:
                 data["text"] = message.text
